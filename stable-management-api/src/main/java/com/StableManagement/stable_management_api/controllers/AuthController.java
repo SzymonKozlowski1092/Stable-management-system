@@ -4,6 +4,7 @@ import com.StableManagement.stable_management_api.Utils.JwtUtil;
 import com.StableManagement.stable_management_api.dto.AuthRequest;
 import com.StableManagement.stable_management_api.dto.RegisterRequest;
 import com.StableManagement.stable_management_api.services.AuthService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,12 +26,12 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody RegisterRequest request){
         authService.register(request);
-        return ResponseEntity.ok("Pomyślnie zarejestrowano użytkownika");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Pomyślnie zarejestrowano użytkownika");
     }
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody AuthRequest request){
         String token = authService.login(request);
-        return ResponseEntity.ok(token);
+        return ResponseEntity.status(HttpStatus.OK).body(token);
     }
 }

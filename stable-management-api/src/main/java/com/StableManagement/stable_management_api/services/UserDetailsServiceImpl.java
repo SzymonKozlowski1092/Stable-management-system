@@ -1,7 +1,5 @@
 package com.StableManagement.stable_management_api.services;
 
-import com.StableManagement.stable_management_api.exceptions.NotFoundException;
-import com.StableManagement.stable_management_api.exceptions.UnauthorizedException;
 import com.StableManagement.stable_management_api.models.User;
 import com.StableManagement.stable_management_api.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
