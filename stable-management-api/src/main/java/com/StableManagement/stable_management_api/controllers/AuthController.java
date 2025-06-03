@@ -2,6 +2,7 @@ package com.StableManagement.stable_management_api.controllers;
 
 import com.StableManagement.stable_management_api.Utils.JwtUtil;
 import com.StableManagement.stable_management_api.dto.AuthRequest;
+import com.StableManagement.stable_management_api.dto.AuthResponse;
 import com.StableManagement.stable_management_api.dto.RegisterRequest;
 import com.StableManagement.stable_management_api.services.AuthService;
 import org.springframework.http.HttpStatus;
@@ -30,8 +31,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody AuthRequest request){
+    public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request){
         String token = authService.login(request);
-        return ResponseEntity.status(HttpStatus.OK).body(token);
+        return ResponseEntity.status(HttpStatus.OK).body(new AuthResponse(token));
     }
 }
