@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>com.StableManagment</groupId>
+	<groupId>com.StableManagement</groupId>
 	<artifactId>stable-management-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Stable Managment System API</name>
+	<name>Stable Management System API</name>
 	<description>REST API for managing horses, stalls, staff, and schedules in a stable</description>
 	<url/>
 
@@ -88,6 +88,16 @@
 			<artifactId>jjwt-jackson</artifactId>
 			<version>0.11.5</version>
 			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>1.6.0</version>
 		</dependency>
 	</dependencies>
 

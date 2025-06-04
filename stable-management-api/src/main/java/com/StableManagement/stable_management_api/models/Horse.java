@@ -27,9 +27,6 @@ public class Horse {
     @NotNull(message = "Data urodzenia konia jest wymagana")
     private LocalDate birthDate;
 
-    @Min(value = 0, message = "Wiek musi byc wiekszy lub rowny 0")
-    private int age;
-
     @ManyToOne
     @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
@@ -49,9 +46,6 @@ public class Horse {
 
     public LocalDate getBirthDate() { return birthDate; }
     public void setBirthDate(LocalDate birthDate) { this.birthDate = birthDate; }
-
-    public int getAge() { return age; }
-    public void setAge(int age) { this.age = age; }
 
     public User getOwner() { return owner; }
     public void setOwner(User owner) { this.owner = owner; }

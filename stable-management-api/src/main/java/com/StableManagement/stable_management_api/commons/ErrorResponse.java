@@ -1,7 +1,13 @@
 package com.StableManagement.stable_management_api.commons;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 
+@Data
+@NoArgsConstructor
 public class ErrorResponse {
     private LocalDateTime timestamp;
     private int status;
@@ -16,14 +22,4 @@ public class ErrorResponse {
         this.message = message;
         this.path = path;
     }
-
-    public LocalDateTime getTimestamp() { return timestamp; }
-
-    public int getStatus() { return status; }
-
-    public String getError() { return error; }
-
-    public String getMessage() { return message; }
-
-    public String getPath() { return path; }
 }
