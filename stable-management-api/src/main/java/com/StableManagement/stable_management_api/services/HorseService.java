@@ -1,32 +1,40 @@
 package com.StableManagement.stable_management_api.services;
 
+import com.StableManagement.stable_management_api.dto.horse.HorseDto;
 import com.StableManagement.stable_management_api.dto.horse.HorsePatchDto;
 import com.StableManagement.stable_management_api.dto.horse.HorseUpdateDto;
 import com.StableManagement.stable_management_api.exceptions.NotFoundException;
+import com.StableManagement.stable_management_api.mappers.HorseMapper;
 import com.StableManagement.stable_management_api.models.Horse;
 import com.StableManagement.stable_management_api.models.User;
 import com.StableManagement.stable_management_api.repositories.HorseRepository;
 import com.StableManagement.stable_management_api.repositories.UserRepository;
-
+import org.springframework.stereotype.Service;
 import java.util.List;
 
+@Service
 public class HorseService {
     private final HorseRepository horseRepository;
     private final UserRepository userRepository;
+    private final HorseMapper horseMapper;
 
-    public HorseService(HorseRepository horseRepository, UserRepository userRepository){
+    public HorseService(HorseRepository horseRepository, UserRepository userRepository, HorseMapper horseMapper){
         this.horseRepository = horseRepository;
         this.userRepository = userRepository;
+        this.horseMapper = horseMapper;
     }
 
-    public Horse getHorse(Long id){
-        return horseRepository
+    public HorseDto getHorse(Long id){
+        Horse horse =  horseRepository
                 .findById(id)
                 .orElseThrow(() -> new NotFoundException("Nie znaleziono konia z id: " + id));
+
+        return horseMapper.entityToDto(horse);
     }
 
-    public List<Horse> getAllHorses(){
-        return horseRepository.findAll();
+    public List<HorseDto> getAllHorses(){
+        List<Horse> horses = horseRepository.findAll();
+        return horseMapper.entitiesToDtos(horses);
     }
 
     public void deleteHorse(Long id){
@@ -45,9 +53,8 @@ public class HorseService {
 
         User newOwner = userRepository
                 .findById(horseUpdateDto.getOwnerId())
-                .orElseThrow(() -> new NotFoundException("Nie znaleziono nowego właściciela z id: " + id));
+                .orElseThrow(() -> new NotFoundException("Nie znaleziono nowego właściciela z id: " + horseUpdateDto.getOwnerId()));
 
-        horse.setAge(horseUpdateDto.getAge());
         horse.setGender(horseUpdateDto.getGender());
         horse.setOwner(newOwner);
         horse.setName(horseUpdateDto.getName());
@@ -63,7 +70,6 @@ public class HorseService {
 
         if(horsePatchDto.getName() != null) horse.setName(horsePatchDto.getName());
         if(horsePatchDto.getGender() != null) horse.setGender(horsePatchDto.getGender());
-        if(horsePatchDto.getAge() != null) horse.setAge(horsePatchDto.getAge());
         if(horsePatchDto.getBirthDate() != null) horse.setBirthDate(horsePatchDto.getBirthDate());
 
         if(horsePatchDto.getOwnerId() != null){

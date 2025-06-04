@@ -2,6 +2,7 @@ package com.StableManagement.stable_management_api.dto.horse;
 
 import com.StableManagement.stable_management_api.enums.HorseGender;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 
 import java.time.LocalDate;
 
@@ -10,7 +11,6 @@ public class HorsePatchDto {
     private String name;
     private HorseGender gender;
     private LocalDate birthDate;
-    private Integer age;
     private Long ownerId;
 
     public String getName() { return name; }
@@ -21,9 +21,6 @@ public class HorsePatchDto {
 
     public LocalDate getBirthDate() { return birthDate; }
     public void setBirthDate(LocalDate birthDate) { this.birthDate = birthDate; }
-
-    public Integer getAge() { return age; }
-    public void setAge(Integer age) { this.age = age; }
 
     public Long getOwnerId() { return ownerId; }
     public void setOwnerId(Long ownerId) { this.ownerId = ownerId; }
