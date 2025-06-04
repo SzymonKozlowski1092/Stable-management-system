@@ -21,9 +21,6 @@ public class HorseUpdateDto {
     @NotNull(message = "Data urodzenia jest wymagana")
     private LocalDate birthDate;
 
-    @Min(value = 0, message = "Wiek musi być większy lub równy 0")
-    private int age;
-
     @NotNull(message = "ID właściciela jest wymagane")
     private Long ownerId;
 
@@ -36,9 +33,6 @@ public class HorseUpdateDto {
 
     public LocalDate getBirthDate() { return birthDate; }
     public void setBirthDate(LocalDate birthDate) { this.birthDate = birthDate; }
-
-    public int getAge() { return age; }
-    public void setAge(int age) { this.age = age; }
 
     public Long getOwnerId() { return ownerId; }
     public void setOwnerId(Long ownerId) { this.ownerId = ownerId; }
