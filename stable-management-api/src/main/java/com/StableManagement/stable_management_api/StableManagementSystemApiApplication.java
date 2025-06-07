@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class StableManagmentSystemApiApplication {
+public class StableManagementSystemApiApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(StableManagmentSystemApiApplication.class, args);
+		SpringApplication.run(StableManagementSystemApiApplication.class, args);
 	}
 }
