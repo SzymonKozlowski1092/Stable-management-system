@@ -1,5 +1,6 @@
 package com.StableManagement.stable_management_api.services;
 
+import com.StableManagement.stable_management_api.dto.UserDto;
 import com.StableManagement.stable_management_api.enums.UserRole;
 import com.StableManagement.stable_management_api.exceptions.NotFoundException;
 import com.StableManagement.stable_management_api.models.User;
