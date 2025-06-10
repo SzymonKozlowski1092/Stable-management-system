@@ -4,6 +4,7 @@ import com.StableManagement.stable_management_api.Utils.JwtUtil;
 import com.StableManagement.stable_management_api.dto.AuthRequest;
 import com.StableManagement.stable_management_api.dto.AuthResponse;
 import com.StableManagement.stable_management_api.dto.RegisterRequest;
+import com.StableManagement.stable_management_api.dto.UserDto;
 import com.StableManagement.stable_management_api.services.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -26,9 +29,10 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@Valid @RequestBody RegisterRequest request){
-        authService.register(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Pomyślnie zarejestrowano użytkownika");
+    public ResponseEntity<UserDto> register(@Valid @RequestBody RegisterRequest request){
+        UserDto newUserDto = authService.register(request);
+        URI location = URI.create(String.format("/api/users/%d", newUserDto.getId()));
+        return ResponseEntity.created(location).body(newUserDto);
     }
 
     @PostMapping("/login")
