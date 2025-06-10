@@ -3,7 +3,9 @@ package com.StableManagement.stable_management_api.services;
 import com.StableManagement.stable_management_api.Utils.JwtUtil;
 import com.StableManagement.stable_management_api.dto.AuthRequest;
 import com.StableManagement.stable_management_api.dto.RegisterRequest;
+import com.StableManagement.stable_management_api.dto.UserDto;
 import com.StableManagement.stable_management_api.exceptions.RegistrationException;
+import com.StableManagement.stable_management_api.mappers.UserMapper;
 import com.StableManagement.stable_management_api.models.RegistrationCode;
 import com.StableManagement.stable_management_api.models.User;
 import com.StableManagement.stable_management_api.repositories.RegistrationCodeRepository;
@@ -24,21 +26,24 @@ public class AuthService {
     private final RegistrationCodeRepository registrationCodeRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
+    private final UserMapper userMapper;
 
     public AuthService(UserRepository userRepository,
                        RegistrationCodeRepository registrationCodeRepository,
                        PasswordEncoder passwordEncoder,
                        JwtUtil jwtUtil,
-                       AuthenticationManager authManager){
+                       AuthenticationManager authManager,
+                       UserMapper userMapper){
         this.userRepository = userRepository;
         this.registrationCodeRepository = registrationCodeRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtUtil = jwtUtil;
         this.authManager = authManager;
+        this.userMapper = userMapper;
     }
 
     @Transactional
-    public void register(RegisterRequest request){
+    public UserDto register(RegisterRequest request){
         RegistrationCode code = registrationCodeRepository.findByCode(request.getCode())
                 .orElseThrow(() -> new RegistrationException("Nieprawidłowy kod rejestracyjny"));
 
@@ -61,6 +66,8 @@ public class AuthService {
 
         code.setUsed(true);
         registrationCodeRepository.save(code);
+
+        return userMapper.entityToDto(user);
     }
 
     public String login(AuthRequest request){
