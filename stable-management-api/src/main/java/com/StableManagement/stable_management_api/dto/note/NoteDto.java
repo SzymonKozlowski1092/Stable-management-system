@@ -1,4 +1,4 @@
-package com.StableManagement.stable_management_api.dto;
+package com.StableManagement.stable_management_api.dto.note;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

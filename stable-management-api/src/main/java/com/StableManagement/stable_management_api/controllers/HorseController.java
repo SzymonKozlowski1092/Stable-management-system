@@ -1,7 +1,6 @@
 package com.StableManagement.stable_management_api.controllers;
 
 import com.StableManagement.stable_management_api.dto.horse.HorseDto;
-import com.StableManagement.stable_management_api.models.Horse;
 import com.StableManagement.stable_management_api.services.HorseService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -28,7 +27,7 @@ public class HorseController {
 
     @GetMapping("/{id}")
     public ResponseEntity<HorseDto> getHorse(@PathVariable Long id){
-        HorseDto horseDto = horseService.getHorse(id);
+        HorseDto horseDto = horseService.getHorseDto(id);
         return ResponseEntity.status(HttpStatus.OK).body(horseDto);
     }
 

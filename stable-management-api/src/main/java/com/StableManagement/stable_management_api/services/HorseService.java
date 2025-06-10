@@ -4,8 +4,8 @@ import com.StableManagement.stable_management_api.dto.horse.HorseDto;
 import com.StableManagement.stable_management_api.exceptions.NotFoundException;
 import com.StableManagement.stable_management_api.mappers.HorseMapper;
 import com.StableManagement.stable_management_api.models.Horse;
-import com.StableManagement.stable_management_api.models.User;
 import com.StableManagement.stable_management_api.repositories.HorseRepository;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -21,7 +21,13 @@ public class HorseService {
         this.horseMapper = horseMapper;
     }
 
-    public HorseDto getHorse(Long id){
+    public Horse getFullHorse(Long id){
+        return horseRepository
+                .findById(id)
+                .orElseThrow(() -> new NotFoundException("Nie znaleziono konia z id: " + id));
+    }
+
+    public HorseDto getHorseDto(Long id){
         Horse horse =  horseRepository
                 .findById(id)
                 .orElseThrow(() -> new NotFoundException("Nie znaleziono konia z id: " + id));
