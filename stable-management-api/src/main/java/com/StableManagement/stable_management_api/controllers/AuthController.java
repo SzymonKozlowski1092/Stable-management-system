@@ -5,6 +5,7 @@ import com.StableManagement.stable_management_api.dto.AuthRequest;
 import com.StableManagement.stable_management_api.dto.AuthResponse;
 import com.StableManagement.stable_management_api.dto.RegisterRequest;
 import com.StableManagement.stable_management_api.services.AuthService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,13 +26,13 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegisterRequest request){
+    public ResponseEntity<String> register(@Valid @RequestBody RegisterRequest request){
         authService.register(request);
         return ResponseEntity.status(HttpStatus.CREATED).body("Pomyślnie zarejestrowano użytkownika");
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request){
+    public ResponseEntity<AuthResponse> login( @RequestBody AuthRequest request){
         String token = authService.login(request);
         return ResponseEntity.status(HttpStatus.OK).body(new AuthResponse(token));
     }
