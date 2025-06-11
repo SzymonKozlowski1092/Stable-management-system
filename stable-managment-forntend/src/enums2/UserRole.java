@@ -1,4 +1,4 @@
-package enums;
+package enums2;
 
 public enum UserRole {
     BOARDER,

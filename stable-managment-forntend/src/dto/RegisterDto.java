@@ -4,9 +4,9 @@ public class RegisterDto {
     private String firstName;
     private String lastName;
     private String username;
-    private String phone;
+    private String phoneNumber;
     private String password;
-    private int code;
+    private int code; //from Manager
 
     public RegisterDto() {}
 
@@ -14,7 +14,7 @@ public class RegisterDto {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
-        this.phone = phone;
+        this.phoneNumber = phone;
         this.password = password;
         this.code = code;
     }
@@ -44,11 +44,11 @@ public class RegisterDto {
     }
 
     public String getPhone() {
-        return phone;
+        return phoneNumber;
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        this.phoneNumber = phone;
     }
 
     public String getPassword() {

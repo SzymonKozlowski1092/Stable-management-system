@@ -3,50 +3,63 @@ package dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import enums2.UserRole;
+
 public class UserDto {
     private Long id;
-    private String fullName;
-    private String phone;
-    private List<HorseDto> horses = new ArrayList<>();
-
-    public UserDto() {}
-
-    public UserDto(Long id, String fullName, String phone, List<HorseDto> horses) {
-        this.id = id;
-        this.fullName = fullName;
-        this.phone = phone;
-        this.horses = horses;
-    }
-
+	private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private UserRole role;
+  
+    public UserDto(Long id, String firstName, String lastName, String phoneNumber, UserRole role) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
+		this.role = role;
+	}
+    
+    
     public Long getId() {
-        return id;
-    }
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getFullName() {
-        return fullName;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public String getPhone() {
-        return phone;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public List<HorseDto> getHorses() {
-        return horses;
-    }
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
 
-    public void setHorses(List<HorseDto> horses) {
-        this.horses = horses;
-    }
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public UserRole getRole() {
+		return role;
+	}
+
+	public void setRole(UserRole role) {
+		this.role = role;
+	}
+    
 }

@@ -1,49 +1,66 @@
 package dto;
 
+import java.time.LocalDateTime;
+
 public class NoteDto {
-    private Long id;
-    private String horseName;
+
+	private Long id;
+	private Long horseId;
+    private Long creatorId;
     private String content;
-    private String creatorFullName;
+    private LocalDateTime createdDate;
 
     public NoteDto() {}
+    
+    public NoteDto(Long id, Long horseId, Long creatorId, String content, LocalDateTime createdDate) {
+		super();
+		this.id = id;
+		this.horseId = horseId;
+		this.creatorId = creatorId;
+		this.content = content;
+		this.createdDate = createdDate;
+	}
+    
+	public Long getId() {
+		return id;
+	}
 
-    public NoteDto(Long id, String horseName, String content, String creatorFullName) {
-        this.id = id;
-        this.horseName = horseName;
-        this.content = content;
-        this.creatorFullName = creatorFullName;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public Long getHorseId() {
+		return horseId;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setHorseId(Long horseId) {
+		this.horseId = horseId;
+	}
 
-    public String getHorseName() {
-        return horseName;
-    }
+	public Long getCreatorId() {
+		return creatorId;
+	}
 
-    public void setHorseName(String horseName) {
-        this.horseName = horseName;
-    }
+	public void setCreatorId(Long creatorId) {
+		this.creatorId = creatorId;
+	}
 
-    public String getContent() {
-        return content;
-    }
+	public String getContent() {
+		return content;
+	}
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-    public String getCreatorFullName() {
-        return creatorFullName;
-    }
+	public LocalDateTime getCreatedDate() {
+		return createdDate;
+	}
 
-    public void setCreatorFullName(String creatorFullName) {
-        this.creatorFullName = creatorFullName;
-    }
+	public void setCreatedDate(LocalDateTime createdDate) {
+		this.createdDate = createdDate;
+	}
+
+
+   
 }

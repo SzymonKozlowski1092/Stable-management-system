@@ -1,27 +1,24 @@
 package dto;
-import enums.HorseGender;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+
+import enums2.HorseGender;
 
 public class HorseDto {
     private Long id;
+    private Long ownerId;
     private String name;
-    private String ownerFullName;
-    private String ownerPhone;
     private HorseGender gender;
-    private List<NoteDto> notes = new ArrayList<>();
+    private LocalDate birthDate;
 
     public HorseDto() {}
 
-    public HorseDto(Long id, String name, String ownerFullName, String ownerPhone, HorseGender gender, List<NoteDto> notes) {
+    public HorseDto(Long id, Long ownerId, String name, HorseGender gender, LocalDate birthDate) {
         this.id = id;
+        this.ownerId = ownerId;
         this.name = name;
-        this.ownerFullName = ownerFullName;
-        this.ownerPhone = ownerPhone;
         this.gender = gender;
-        this.notes = notes;
+        this.birthDate = birthDate;
     }
 
     public Long getId() {
@@ -32,28 +29,20 @@ public class HorseDto {
         this.id = id;
     }
 
+    public Long getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(Long ownerId) {
+        this.ownerId = ownerId;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getOwnerFullName() {
-        return ownerFullName;
-    }
-
-    public void setOwnerFullName(String ownerFullName) {
-        this.ownerFullName = ownerFullName;
-    }
-
-    public String getOwnerPhone() {
-        return ownerPhone;
-    }
-
-    public void setOwnerPhone(String ownerPhone) {
-        this.ownerPhone = ownerPhone;
     }
 
     public HorseGender getGender() {
@@ -64,11 +53,11 @@ public class HorseDto {
         this.gender = gender;
     }
 
-    public List<NoteDto> getNotes() {
-        return notes;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
-    public void setNotes(List<NoteDto> notes) {
-        this.notes = notes;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 }
