@@ -37,6 +37,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
+    @NotNull
+    private Boolean isDeleted;
+
     @OneToMany(mappedBy = "owner")
     private List<Horse> horses = new ArrayList<>();
 
@@ -47,9 +50,11 @@ public class User {
 
     public Long getId(){ return id; }
 
-    public String getName(){ return firstName + " " + lastName; }
     public void setFirstName(String firstName){ this.firstName = firstName; }
+    public String getFirstName() { return this.firstName; }
+
     public void setLastName(String lastName){ this.lastName = lastName; }
+    public String getLastName() { return this.lastName; }
 
     public String getUsername(){ return username; }
     public void setUsername(String username){ this.username = username; }
@@ -62,6 +67,9 @@ public class User {
 
     public List<Horse> getHorses() { return horses; }
     public void setHorses(List<Horse> horses) { this.horses = horses; }
+
+    public Boolean getDeleted() { return isDeleted; }
+    public void setDeleted(Boolean deleted) { isDeleted = deleted; }
 
     public void setPassword(String password){ this.password = password; }
     public String getPassword(){ return password; }
