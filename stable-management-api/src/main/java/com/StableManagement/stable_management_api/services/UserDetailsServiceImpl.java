@@ -20,6 +20,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Niepoprawny login lub hasło."));
 
+        if(user.getDeleted()){
+            throw new UsernameNotFoundException("Ten użytkownik został usunięty");
+        }
+
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(),

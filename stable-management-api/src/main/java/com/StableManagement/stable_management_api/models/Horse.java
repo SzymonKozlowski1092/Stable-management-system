@@ -31,7 +31,7 @@ public class Horse {
     @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
 
-    @OneToMany(mappedBy = "horse")
+    @OneToMany(mappedBy = "horse", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Note> notes = new ArrayList<>();
 
     public Horse(){}
