@@ -43,6 +43,7 @@ public class LoginView extends JFrame implements LoginViewModel.LoginCallback
 		LoginViewModel viewModel = new LoginViewModel(this);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false); 
 		setBounds(100, 100, 532, 354);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.info);
@@ -97,6 +98,7 @@ public class LoginView extends JFrame implements LoginViewModel.LoginCallback
 	public void onLoginSuccess() {
 		// TODO manager or user window (now for test its will be user window)
 		SwingUtilities.invokeLater(() -> new UserView().setVisible(true));
+		dispose();
 	}
 	@Override
 	public void onLoginFailure() 

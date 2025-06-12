@@ -3,7 +3,7 @@ package viewModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginViewModel implements ActionListener 
+public class LoginViewModel implements ActionListener
 {
 	public interface LoginCallback {
         void onLoginSuccess();

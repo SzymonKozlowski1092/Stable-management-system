@@ -37,8 +37,7 @@ public class RegisterView extends JFrame {
 	public RegisterView() {
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false); 
 		setBounds(100, 100, 451, 597);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.info);
@@ -84,6 +83,7 @@ public class RegisterView extends JFrame {
 		contentPane.add(textFieldPhone);
 		
 		textFieldCode = new PlaceholderTextField("Code");
+		textFieldCode.setToolTipText("The registration code can be obtained from the stable manager and is valid for 3 minutes.");
 		textFieldCode.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textFieldCode.setColumns(10);
 		textFieldCode.setBounds(82, 372, 283, 35);
