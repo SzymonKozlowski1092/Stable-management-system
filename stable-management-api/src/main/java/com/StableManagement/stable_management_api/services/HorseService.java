@@ -40,6 +40,15 @@ public class HorseService {
         return horseMapper.entitiesToDtos(horses);
     }
 
+    public List<HorseDto> getUserHorses(Long ownerId){
+        if(userService.getUserById(ownerId) == null){
+            throw new NotFoundException("Nie znaleziono użytkownika z id: " + ownerId);
+        }
+
+        List<Horse> horses = horseRepository.findByOwner_Id(ownerId);
+        return horseMapper.entitiesToDtos(horses);
+    }
+
     public HorseDto createHorse(HorseDto horseDto) {
         Horse horse = horseMapper.dtoToEntity(horseDto, userService);
         Horse saved = horseRepository.save(horse);

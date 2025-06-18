@@ -3,6 +3,7 @@ package com.StableManagement.stable_management_api.controllers;
 import com.StableManagement.stable_management_api.dto.horse.HorseDto;
 import com.StableManagement.stable_management_api.services.HorseService;
 import jakarta.validation.Valid;
+import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -34,6 +35,12 @@ public class HorseController {
     public ResponseEntity<HorseDto> getHorse(@PathVariable Long id){
         HorseDto horseDto = horseService.getHorseDto(id);
         return ResponseEntity.status(HttpStatus.OK).body(horseDto);
+    }
+
+    @GetMapping("/user/{ownerId}")
+    public ResponseEntity<List<HorseDto>> getOwnerHorses(@PathVariable Long ownerId){
+        List<HorseDto> horses = horseService.getUserHorses(ownerId);
+        return ResponseEntity.status(HttpStatus.OK).body(horses);
     }
 
     @PostMapping
