@@ -18,4 +18,9 @@ public class UserSecurity {
                 .map(user -> user.getUsername().equals(username))
                 .orElse(false);
     }
+
+    public boolean isSelf(String usernameFromPath, Authentication auth){
+        String username = auth.getName();
+        return username.equals(usernameFromPath);
+    }
 }

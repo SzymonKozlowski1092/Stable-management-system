@@ -34,6 +34,14 @@ public class UserController {
         return ResponseEntity.ok().body(userDto);
     }
 
+    @GetMapping("/username/{username}")
+    @PreAuthorize("hasAnyRole('MANAGER','EMPLOYEE') or " +
+            "@userSecurity.isSelf(#username, authentication)")
+    public ResponseEntity<UserDto> getUserByUsername(@PathVariable String username){
+        UserDto userDto = userService.getUserDtoByUsername(username);
+        return ResponseEntity.ok().body(userDto);
+    }
+
     @PatchMapping("/{id}")
     @PreAuthorize("hasRole('MANAGER')")
     public ResponseEntity<UserDto> patchUser(@PathVariable Long id, @Valid @RequestBody UserDto userDto){

@@ -45,6 +45,18 @@ public class UserService {
         return mapper.entityToDto(user);
     }
 
+    public UserDto getUserDtoByUsername(String username){
+        User user = userRepository
+                .findByUsername(username)
+                .orElseThrow(() -> new NotFoundException("Nie znaleziono użytkownika z nazwą: " + username));
+
+        if(user.getDeleted()){
+            throw new NotFoundException("Ten użytkownik został usunięty");
+        }
+
+        return mapper.entityToDto(user);
+    }
+
     public List<UserDto> getUsers(){
         List<User> users = userRepository.findAll();
         return mapper.entitiesToDtos(users);
